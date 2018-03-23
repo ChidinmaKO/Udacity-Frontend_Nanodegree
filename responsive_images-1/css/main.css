@@ -1,0 +1,33 @@
+/*
+
+Your styles go here!
+
+Hint! You'll probably want to start by styling:
+  * <body>
+  * <article>
+  * <h1>
+  * <img>
+
+I've left some boilerplate below for you.
+
+*/
+
+article {
+  margin: 0 auto;
+  max-width: 50em;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 2em;
+}
+
+h1 {
+  margin: 0 auto 1em auto;
+  width: 800px;
+}
+
+img {
+  max-width: 100%;
+}
+
