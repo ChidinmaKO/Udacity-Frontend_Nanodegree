@@ -1,0 +1,132 @@
+/*Base styles*/
+h1,
+h2,
+h3,
+p,
+a,
+figcaption {
+    font-weight: 200;
+    letter-spacing: 1.5px;
+    color: rgb(46, 60, 73) !important;
+}
+
+a:visited{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.img-responsive{
+    max-width:100%;
+}
+
+/*.row{
+    margin-left:0 !important;
+    margin-right:0 !important;
+}*/
+
+/*Header*/
+.header{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 5px solid rgb(128, 150, 171);
+    padding: 1.7em 0;
+    margin: 0 0 23px;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 20vw;
+}
+
+.text{
+    display:  flex;
+    flex-direction:  column;
+    justify-content: center;
+    align-items: flex-end;
+    text-transform: uppercase;
+}
+
+#text1{
+    letter-spacing: 7px;
+    font-weight: 300;
+    font-size: 48px;
+}
+
+#text2{
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+figcaption{
+    text-align: center;
+    padding: 20px 0;
+}
+
+.work{
+    padding: 30px 20px 6px;
+}
+
+.f_work{
+    letter-spacing: 3px;
+    color: rgb(125, 151, 174);
+}
+
+.inner{
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 2px;
+    line-height: 0;
+}
+
+.smallText{
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+@media screen and  (max-width: 750px){
+    #text1{
+        letter-spacing: 5px;
+        font-weight: 100;
+        font-size: 26px;
+    }
+
+
+    #text2{
+       letter-spacing: 1px;
+       font-weight: 400;
+       font-size: 1.3rem;
+    }
+
+    .f_work, .smallText, figure{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .logo{
+        width:30vw;
+    }
+
+    #text1{
+        letter-spacing: 3px;
+        font-weight: 100;
+        font-size: 19px;
+    }
+
+    #text2{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .logo{
+        width: 100%;
+    }
+
+    .text{
+        display: none;
+    }
+}
