@@ -21,9 +21,7 @@ let matchedCards = [];
 
 const init = () => {
     let cardsShuffled = shuffle(cardsArray);
-
-    
-
+    // let cardsShuffled = cardsArray;
     for(let i = 0; i < cardsShuffled.length; i++) {
         const card = document.createElement("li");
         card.classList.add("card");
@@ -44,7 +42,6 @@ let isFirstClick = true;
 
 const clickEvent = (card) => {
     card.addEventListener("click", function() {
-        // console.log(card.innerHTML);
 
         /* 
         * we need to write a condition that checks if we already have
@@ -65,7 +62,6 @@ const clickEvent = (card) => {
             // here we already have a clicked card
             card.classList.add("open", "show", "disabled");
             openedCards.push(this);
-            // console.log(openedCards);
 
             // we need to compare the cards
             compareCards(currentCard, previousCard);
@@ -74,7 +70,6 @@ const clickEvent = (card) => {
            // here we don't have an already clicked card
             currentCard.classList.add("open", "show", "disabled");
             openedCards.push(this);
-            // console.log(openedCards);
        }
     });
 }
@@ -87,48 +82,43 @@ const clickEvent = (card) => {
 const compareCards = (currentCard, previousCard) => {
 
     if(currentCard.innerHTML === previousCard.innerHTML) {
-        // console.log("matches");
         currentCard.classList.add("match");
         previousCard.classList.add("match");
 
         matchedCards.push(currentCard, previousCard);
-        console.log(matchedCards);
 
         openedCards = [];
 
         //check if cards are matched
-
-        isOver();
-
     }else {
 
         // before the wrong matched card is removed, we need to see it for 
         // 2 seconds... hence the setTimeout function
+        previousCard.classList.add("unmatch");
+        currentCard.classList.add("unmatch");
         setTimeout(function() {
-            console.log("!matches");
-            previousCard.classList.remove("open", "show", "disabled");
-            currentCard.classList.remove("open", "show", "disabled");
-            // previousCard.classList.add("unmatch");
-            // currentCard.classList.add("unmatch");
+            // It's much better to move all this to a function and call it here closeUnmatchedCards();
+ 
+            previousCard.classList.remove("unmatch", "open", "show", "disabled");
+            currentCard.classList.remove("unmatch", "open", "show", "disabled");
             openedCards = [];
-        }, 200);
+        }, 400);
     }
 
     //add new move
     addMove();
-    console.log(moves);
+    addTotalMove();
+    isOver();
 }
+// Function can be here function closeUnmatchedCards() {}
 
 /*
 * Check if the game is over
 */
 const isOver = () => {
     if (matchedCards.length === cardsArray.length) {
-        // console.log("game over, beautiful");
         stopTimer();
-        setTimeout(() => {
-            alert("game over, beautiful");
-        }, 500);
+        toggleModal();
     }
 }
 
@@ -150,18 +140,30 @@ restartIcon.addEventListener("click", function() {
 })
 
 /*
- * Moves
+ * Moves & totalMoves
 */
 const movesContainer = document.querySelector(".moves");
 let moves = 0;
 //movesContainer.innerHTML = 0; <= not needed because there's already a 
 // span class in the HTML with "0"
-function addMove() {
+const addMove = () => {
     moves++;
     movesContainer.innerHTML = moves;
 
     //call the rating function
     rating();
+    totalRating();
+}
+
+const totalMovesContainer = document.querySelector(".total-moves");
+let totalMoves = 0;
+const addTotalMove = () => {
+    totalMoves++;
+    totalMovesContainer.innerHTML = totalMoves;
+    
+
+    rating();
+    totalRating();
 }
 
 /*
@@ -185,38 +187,21 @@ const rating = () => {
  * Timer
 */
 
-// const timerContainer = document.querySelector(".timer");
-// const timer = () => {
-//     let minutes = 0;
-//     let seconds = 0;
-//     gameInterval = setInterval(function () {
-//         seconds = parseInt(seconds, 10) + 1;
-//         minutes = parseInt(minutes, 10);
-//         if (seconds >= 60) {
-//             minutes += 1;
-//             seconds = 0;
-//         }
-
-//         seconds = seconds < 10 ? "0" + seconds : seconds;
-//         minutes = minutes < 10 ? "0" + minutes : minutes;
-
-//         timerContainer.innerHTML = minutes + ":" + seconds;
-//         lastTime.textContent = time.textContent;
-//         console.log(time,"hellooooo are you there????");
-//     }, 1000);
-// }
-
 const timerContainer = document.querySelector(".timer");
-let gameTimer, totalSeconds = 0;
+const totalTimeContainer = document.querySelector(".total-time");
+let gameTimer, seconds = 0, totalSeconds = 0;
 
-timerContainer.innerHTML = totalSeconds + 's';
+timerContainer.innerHTML = seconds + 's';
+totalTimeContainer.innerHTML = totalSeconds + 's';
 
 const startTimer = () => {
     gameTimer = setInterval(function() {
-        // Increase the totalSeconds by 1
+        // Increase the seconds by 1
+        seconds++;
         totalSeconds++;
         // Update the HTML Container with the new time
-        timerContainer.innerHTML = totalSeconds + 's';
+        timerContainer.innerHTML = seconds + 's';
+        totalTimeContainer.innerHTML = totalSeconds + 's';
     }, 1000);
 
 }
@@ -230,15 +215,73 @@ const reset = () => {
     matchedCards = [];
     // moves
     moves = 0;
+    totalMoves = 0;
     movesContainer.innerHTML = 0;
     // ratings
     ratingsContainer.innerHTML = stars + stars + stars;
+    totalRatingsContainer.innerHTML = totalStars + totalStars + totalStars;
     // timer
     stopTimer();
     isFirstClick = true;
-    totalSeconds = 0;
-    timerContainer.innerHTML = totalSeconds + 's';
+    seconds = 0;
+    totalSeconds = 0
+    timerContainer.innerHTML = seconds + 's';
+    totalTimeContainer.innerHTML = totalSeconds + 's';
 }
+
+// modal
+
+const modal = document.querySelector(".modal");
+const closeButton = document.querySelector(".close");
+const restartButton = document.querySelector(".btn-restart");
+const endButton = document.querySelector(".btn-end");
+
+const totalRatingsContainer = document.querySelector(".total-stars");
+
+const totalStars = `<i class="fa fa-star"></i>`;
+totalRatingsContainer.innerHTML = totalStars + totalStars + totalStars;
+
+const totalRating = () => {
+    if (moves <= 10) {
+        totalRatingsContainer.innerHTML = totalStars + totalStars + totalStars;
+    } else if (moves <= 14) {
+        totalRatingsContainer.innerHTML = totalStars + totalStars;
+    } else {
+        totalRatingsContainer.innerHTML = totalStars;
+    }
+}
+
+
+
+const toggleModal = () => {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(evt) {
+    if (evt.target === modal) {
+        toggleModal();
+    }
+}
+
+modal.addEventListener("click", toggleModal);
+
+window.addEventListener("click", windowOnClick);
+
+restartButton.addEventListener("click", function() {
+    cardsParent.innerHTML = "";
+    init();
+    reset();
+});
+
+endButton.addEventListener("click", function() {
+    isOver();
+    toggleModal();
+});
+
+closeButton.addEventListener("click", function(){
+    isOver();
+    toggleModal();
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
