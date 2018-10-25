@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Classic Arcade Game Clone</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+</head>
+<body>
+    <section class="overlay1 begin_game">
+        <div class="first container">
+            <h2>Classic Arcade Game</h2>
+            <p>
+                Choose a player. 
+                Fetch all gems and safely get to the river.
+            </p>
+            <p>Beware! There are bugs 🐞🐞 everywhere and they will send you back 😱😢☹️ </p>
+            <p>Make use of the arrow keys to navigate through the game.</p>
+
+            <div class="players">
+                <form id="radio" class="player_group">
+                    <div class="player_wrapper">
+                        <label>
+                            <img src="images/char-cat-girl.png" class="player_image" alt="player character">
+                            <input class="player" type="radio" name="player" id="cat-girl" checked>
+                        </label>
+                    </div>
+    
+                    <div class="player_wrapper">
+                        <label>
+                            <img src="images/char-boy.png" class="player_image" alt="player character">
+                            <input class="player" type="radio" name="player" id="boy">
+                        </label>
+                    </div>
+    
+                    <div class="player_wrapper">
+                        <label>
+                            <img src="images/char-horn-girl.png" class="player_image" alt="player character">
+                            <input class="player" type="radio" name="player" id="horn-girl" >
+                        </label>
+                    </div>
+    
+                    <div class="player_wrapper">
+                        <label>
+                            <img src="images/char-princess-girl.png" class="player_image" alt="player character">
+                            <input class="player" type="radio" name="player" id="princess-girl" >
+                        </label>
+                    </div>
+    
+                    <div class="player_wrapper">
+                        <label>
+                            <img src="images/char-pink-girl.png" class="player_image" alt="player character">
+                            <input class="player" type="radio" name="player" id="pink-girl" >
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <button class="btn_begin" type="submit">Start Game</button>
+        </div>
+    </section>
+
+    <section class="canvas game__board conceal">
+        <div class="second container">
+            <h2>Classic Arcade Game</h2>
+            <div class="score-board">
+                <div class="game-score">
+                    <p class="total-lives">Remaining Lives: <span class="lives">3</span></p>
+                    <p class="total-points">Total Points: <span class="points">0</span></p>
+                </div>
+
+                <div class="canvas__container"></div>
+
+                <button class="btn_restart">Restart Game</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="overlay2 end_game">
+        <div class="third container">
+            <h2>Classic Arcade Game</h2>
+            <p class="end_message"><span>Congratulations! You Won! 🎉 🎉 🎊 🎊</span></p>
+            <span class="end_player"><img class="" src="images/char-cat-girl.png" alt="player character"></span>
+
+            <div class="score-board">
+                <p class="total_lives">Remaining Lives: <span class="lives">3</span></p>
+                <p class="total_points">Total Points: <span class="points">0</span></p>
+            </div>
+
+            <button class="btn_restart">Play Again!</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2018. Created by <a href="https://github.com/ChidinmaKO">Chidinma Kalu</a> for <a href="https://eu.udacity.com/course/front-end-web-developer-nanodegree--nd001">Udacity FEND Nanodegree</a></p>
+    </footer>
+    <script src="js/resources.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/engine.js"></script>
+</body>
+</html>

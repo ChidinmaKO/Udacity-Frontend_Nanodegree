@@ -1,0 +1,124 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+    background-color: #f64f59;
+    color: #faebd7;
+}
+
+h2 {
+    color: #24243e;
+    font-size: 2.8rem;
+    text-shadow: 1px 1px 1px #24243e;
+}
+
+a {
+    color: #302b63;
+}
+
+a:hover, a:visited {
+    color: #4A00E0;
+}
+
+
+.conceal {
+    display: none;
+}
+
+.container {
+    margin: 1rem auto 1rem;
+    padding: 1.5rem;
+    max-width: 650px;
+    /* border-radius: 5px;
+    border: 2px solid #D9545E; */
+}
+
+.player_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.player_wrapper{
+    background: #db535b;
+    cursor: pointer;
+    margin: 5px;
+    /* padding: 10px;
+    padding-bottom: 4rem; */
+    border-radius: 6px;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+}
+
+.player_wrapper:hover{
+    background: #db535b;
+    cursor: pointer;
+    box-shadow: 3px 3px 6px #db535b;
+}
+
+.player_image {
+    width: 100%;
+    cursor: pointer;
+}
+
+input[type ="radio"] {
+    cursor: pointer;
+}
+
+.game-score {
+    display: flex;
+    justify-content: center;
+}
+
+.total-lives, .total-points {
+    margin: 0 20px;
+}
+
+button {
+    background: #0f0c29;
+    color: #faebd7;
+    border: 1px solid #0f0c29;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px #0f0c29;
+    margin-top: 2rem;
+    padding: 17px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+button:hover, button:active, button:focus {
+    background:#24243e;
+    border: 1px solid #24243e;
+    box-shadow: 3px 3px 3px #24243e;
+    outline: none;
+}
+
+footer p{
+    font-size: 14px;
+    letter-spacing: 3px;
+}
